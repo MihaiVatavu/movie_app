@@ -19,8 +19,7 @@
           } ?>">Browse</a></li>
         </ul>
       </div>
-</nav>
-
+  </nav>
   <ul class="sidenav" id="mobile-demo">
     <li><a class="modal-trigger" href="../index.php">Home</a></li>
     <li><a class="modal-trigger" href="<?php if(!isset($_SESSION['username'])){
@@ -32,10 +31,11 @@
 <div class="container">
 <!-- Search for a movie -->
   <div class="row">
-    <form id="search_form" class="col m6 offset-m3">
-      <input type="text" id="search" placeholder="Search for a movie">
+    <form id="searchform" class="col m6 offset-m3">
+      <input type="text" id="search">
     </form>
   </div>
+  
   <!-- Output box for movies -->
   <div class="row" id="movies">
 
@@ -43,7 +43,7 @@
 </div>
 <?php include('../template/footer.php');?>
 <script type="text/javascript" src="../javascript/main.js"></script>
-<script>
+<script >
   popularMovies()
 </script>
 </body>

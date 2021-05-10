@@ -49,6 +49,8 @@ if(isset($_POST['submit'])){
     $query = "INSERT INTO users(username,email,pass,status) VALUES('$name','$email','$password','user')";
 
     if(mysqli_query($conn,$query)){
+      session_start();
+      $_SESSION['email'] = $email; 
       header('Location:../user/index.php');
     }else{
       echo 'query error:'. mysqli_error($conn);
@@ -94,7 +96,7 @@ if(isset($_POST['submit'])){
         } ?>">Browse</a></li>
   </ul>
 
-<div class="container" id="signup">
+<div class="cont" id="signup">
       <div class="row">
         <h3 class="center">Sign Up</h3>
         <form action="signup.php" method="POST">
@@ -127,9 +129,11 @@ if(isset($_POST['submit'])){
             <div class="red-text"><?php echo $errors['confirmpassword'] ?></div>
           </div>
           </div>
+          <div class="row center">
           <button class="btn-large waves-effect waves-light grey darken-4 center" type="submit" name="submit" value="submit">Sign Up
             <i class="material-icons right">send</i>
-          </button> 
+          </button>
+          </div> 
         </form>
       </div>
     </div>

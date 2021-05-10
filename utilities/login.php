@@ -27,16 +27,17 @@ if(isset($_POST['submit'])) {
   $password = mysqli_real_escape_string($conn,$_POST['password']);
 
 //Query
-  $query = "SELECT email, pass FROM users WHERE email = '$email' && pass = '$password'";
+  $query = "SELECT email, pass, status FROM users WHERE email = '$email' && pass = '$password'";
 
   $result = mysqli_query($conn,$query);
+  
+  $data = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
   $count = mysqli_num_rows($result);
 
-  print_r ($result);
-
   if($count == 1){
     session_start();
+    $_SESSION['status'] = $data[0]['status'];
     $_SESSION['email'] = $email; 
     header('location: ../user/index.php');
   }else{
@@ -81,7 +82,7 @@ if(isset($_POST['submit'])) {
   </ul>
 
 
-   <div class="container">
+   <div class="cont">
    <h1 class="center">LOG IN</h1>
      <div class="row">
         <div class="col s12 l8 offset-l2">

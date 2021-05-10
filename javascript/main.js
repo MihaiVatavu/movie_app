@@ -10,30 +10,28 @@ const apiKey= 'aa806af51ddcf7eebc557d13e1cecf88';
 // }
 
 
-const checkSearch = (event)=>{
+const searchForMovie = (event)=>{
 
   event.preventDefault()
 
-  let inputText = document.getElementById('search').value
-
-
+  let inputText = document.getElementById('search').value;
   if(event.value == null){
     console.log('Hello')
   }
   console.log(inputText)
   searchMovies(inputText)
 }
-
 //Check if the doc has a search box 
-if(document.getElementById('search_form')){
-  const searchForm =  document.getElementById('search_form');
-  searchForm.addEventListener('submit', checkSearch);
-}
+  if(document.getElementById('searchform')){
+    const searchForm =  document.getElementById('searchform');
+    searchForm.addEventListener('submit', searchForMovie);
+    console.log(searchForm)
+  }
 
 //Set the movie id so you can pass it to the details page
 const getMovieId = (id)=>{
   sessionStorage.setItem('id', id);
-  console.log(sessionStorage.getItem('id'));
+  // console.log(sessionStorage.getItem('id'));
 }
 
 
@@ -44,7 +42,7 @@ const popularMovies = async ()=>{
   // console.log(movies)
   let uiOutput = '';
   movies.forEach((movie)=>{
-      console.log(movie)
+      // console.log(movie)
       let poster  
       if (movie.poster_path === null) {
         poster = "../assets/default_movie_image.png";
@@ -130,7 +128,7 @@ const getIndividualMovie = async ()=>{
     } else {
     poster = "https://image.tmdb.org/t/p/w500" + movie.poster_path;
   }
-  console.log(movie)
+  // console.log(movie)
 
   let uiOutput = `
   <div class="col s12 m8 l6 center" id="details_movie">

@@ -1,5 +1,11 @@
+.cont {
+	min-height: 82vh;
+	max-width: 75%;
+	margin: 1rem auto;
+}
+
 .container {
-	min-height: 85vh;
+	/* min-height: 85vh; */
 }
 
 .carousel {
