@@ -32,7 +32,7 @@
 <!-- Search for a movie -->
   <div class="row">
     <form id="searchform" class="col m6 offset-m3">
-      <input type="text" id="search">
+      <input type="text" id="search" placeholder="Search for a movie">
     </form>
   </div>
   

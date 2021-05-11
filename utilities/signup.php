@@ -98,32 +98,32 @@ if(isset($_POST['submit'])){
 
 <div class="cont" id="signup">
       <div class="row">
-        <h3 class="center">Sign Up</h3>
+        <h1 class="center">Sign Up</h1>
         <form action="signup.php" method="POST">
         <input type="hidden" name="signup" value="yes" >
         <div class="row">
-          <div class="input-field col l8 offset-l2">
+          <div class="input-field col l6 offset-l3">
           <input placeholder="Enter your name" name="name" id="name" type="text" class="validate" value="<?php echo htmlspecialchars($name) ?>">
             <label for="name">Name</label>
             <div class="red-text"><?php echo $errors['name'] ?></div>
             </div>
           <div class="row">
           </div>
-          <div class="input-field col l8 offset-l2">
+          <div class="input-field col l6 offset-l3">
           <input placeholder="Enter email" name="email" id="email" type="text" class="validate" value="<?php echo htmlspecialchars($email) ?>">
             <label for="email">Email</label>
             <div class="red-text"><?php echo $errors['email'] ?></div>
             </div>
             </div>
           <div class="row">
-          <div class="input-field col l8 offset-l2">
+          <div class="input-field col l6 offset-l3">
           <input placeholder="Enter your password" name="password" id="password" type="password" class="validate" value="<?php echo htmlspecialchars($password) ?>">
             <label for="password">Password</label>
             <div class="red-text"><?php echo $errors['password'] ?></div>
           </div>
           </div>
           <div class="row">
-          <div class="input-field col l8 offset-l2">
+          <div class="input-field col l6 offset-l3">
           <input placeholder="Confirm your password" name="confirmpassword" id="confirmpassword" type="password" class="validate" value="<?php echo htmlspecialchars($confirmpassword) ?>">
             <label for="conformpassword">Confirm Password</label>
             <div class="red-text"><?php echo $errors['confirmpassword'] ?></div>

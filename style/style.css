@@ -1,6 +1,6 @@
 .cont {
 	min-height: 82vh;
-	max-width: 75%;
+	max-width: 68%;
 	margin: 1rem auto;
 }
 
@@ -32,6 +32,10 @@ footer {
 	margin: 1rem;
 	font-size: 1.5rem;
 	padding: 0.5rem;
+}
+
+.card-text {
+	overflow: hidden;
 }
 
 @media all and (max-width: 600px) {

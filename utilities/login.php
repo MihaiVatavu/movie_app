@@ -83,9 +83,9 @@ if(isset($_POST['submit'])) {
 
 
    <div class="cont">
-   <h1 class="center">LOG IN</h1>
+   <h1 class="center">Log In</h1>
      <div class="row">
-        <div class="col s12 l8 offset-l2">
+        <div class="col s12 l6 offset-l3">
         <form class="center" action="login.php" method="POST">
         <div class="row">
           <div class="input-field">
