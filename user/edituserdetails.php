@@ -1,6 +1,35 @@
 <?php
 
+include('../utilities/conn.php');
+
+session_start();
+
 $name = $country = $city = $age = $bio = '';
+
+$errors = array('name' => '');
+
+if (isset($_POST['submit'])) {
+  if (empty($_POST['name'])) {
+    $errors['name'] = 'Name cannot be empty';
+  }
+}
+
+if (array_filter($errors)) {
+} else {
+
+  $email = mysqli_real_escape_string($conn, $_SESSION['email']);
+  $name = (isset($_POST['name']) == TRUE) ? (mysqli_real_escape_string($conn, $_POST['name'])) : '';
+  $age = (isset($_POST['age']) == TRUE) ? (mysqli_real_escape_string($conn, $_POST['age'])) : '';
+  $bio = (isset($_POST['bio']) == TRUE) ? (mysqli_real_escape_string($conn, $_POST['bio'])) : '';
+  $country = (isset($_POST['country']) == TRUE) ? (mysqli_real_escape_string($conn, $_POST['country'])) : '';
+  $city = (isset($_POST['city']) == TRUE) ? (mysqli_real_escape_string($conn, $_POST['city'])) : '';
+
+  $query = "UPDATE `users` SET `username`='$name',`age`='$age',`country`='$country',`city`='$city',`bio`= '$bio' WHERE email='$email' ";
+
+  $result = mysqli_query($conn, $query);
+  
+  mysqli_close($conn);
+}
 
 
 ?>
@@ -51,6 +80,7 @@ $name = $country = $city = $age = $bio = '';
           <div class="input-field">
             <label for="name">Name</label>
             <input type="text" id="name" name="name" class="validate" placeholder="Enter/Change your name" value=<?php echo htmlspecialchars($name) ?>>
+            <div class="red-text"><?php echo $errors['name'] ?></div>
           </div>
         </div>
         <div class="row">

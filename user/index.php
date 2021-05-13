@@ -3,6 +3,7 @@
 include('../utilities/conn.php');
 
 session_start();
+
 if (!isset($_SESSION['email'])) {
   header('location: ../guest/index.php');
 } else {
@@ -21,9 +22,9 @@ $result = mysqli_query($conn, $sqlget);
 
 $data = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
-// print_r($result);
-print_r($data);
+// print_r($result)
 
+mysqli_close($conn);
 
 ?>
 
@@ -75,8 +76,6 @@ print_r($data);
       <a href="edituserdetails.php" class="btn-large waves-effect waves-light grey darken-4 center">Edit Details<i class="material-icons right">edit</i></a>
     </div>
   </div>
-
-
   <?php include('../template/footer.php'); ?>
 </body>
 

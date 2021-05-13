@@ -8,6 +8,7 @@ if (isset($_SESSION['email'])) {
 }
 
 
+
 // echo "hello browse user"
 
 ?>
@@ -39,10 +40,23 @@ if (isset($_SESSION['email'])) {
     <li><a class="modal-trigger" href="../user/index.php">Home</a></li>
   </ul>
   <div class="container">
+    <div class="row">
+      <form id="searchform" class="col m6 offset-m3">
+        <input type="text" id="search" placeholder="Search for a movie">
+      </form>
+    </div>
 
+    <!-- Output box for movies -->
+    <div class="row" id="movies">
+
+    </div>
   </div>
 
   <?php include('../template/footer.php'); ?>
+  <script type="text/javascript" src="../javascript/main.js"></script>
+  <script>
+    popularMovies()
+  </script>
 </body>
 
 </html>
