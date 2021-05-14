@@ -1,9 +1,8 @@
 <?php
-session_start();
-if (!isset($_SESSION['username'])) {
+if (!isset($_SESSION['email'])) {
     header('location: guest/index.php');
 }
-elseif (isset($_SESSION['username']) == "admin") {
+else if (isset($_SESSION['status']) == "admin") {
     header('location: admin/index.php');
 }
 else{ 

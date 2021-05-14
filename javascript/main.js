@@ -22,6 +22,23 @@ const getMovieId = id => {
 	// console.log(sessionStorage.getItem('id'));
 };
 
+const addToFavorites = (param1, param2, param3) => {
+	let dataToPass = {};
+	dataToPass.id = param1;
+	dataToPass.title = param2;
+	dataToPass.rating = param3;
+	console.log(dataToPass);
+
+	$.ajax({
+		type: "POST",
+		url: "../user/addToFav.php",
+		data: dataToPass,
+		success: function (data) {
+			console.log(data);
+		},
+	});
+};
+
 const popularMovies = async () => {
 	let data = await fetch(
 		`https://api.themoviedb.org/3/movie/popular?api_key=aa806af51ddcf7eebc557d13e1cecf88`
@@ -158,15 +175,13 @@ const getIndividualMovieLoggedIn = async () => {
       <h2 class="center">Rating : ${movie.vote_average}</h2>
       <p class="center">${movie.overview}</p>
       <p class="center">Runtime : ${movie.runtime}/min</p>
-						<button class="btn-large waves-effect waves-light grey darken-4 center" type="submit" name="submit" value="submit">Add to Favourites
+						<button onclick="addToFavorites('${movieId}','${movie.title}','${movie.vote_average}')" class="btn-large waves-effect waves-light grey darken-4 center">Add to Favourites
 						<i class="material-icons right">favorite_border</i>
 				</button> 
     </div>
     <div class="col s12 m8 l6 center" id="details_movie_poster">
       <img class="responsive-img" src="${poster}">
     </div>
-
-
   `;
 	document.getElementById("movie").insertAdjacentHTML("afterbegin", uiOutput);
 };
