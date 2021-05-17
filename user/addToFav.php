@@ -1,7 +1,29 @@
 <?php
+include('../utilities/conn.php');
 
-// $id = $_POST['dataId'];
-// $title = $_POST['dataTitle'];
-// $rating = $_POST['dataRating'];
+session_start();
+$email = $_SESSION['email'];
+$id = $_POST['id'];
+$title = $_POST['title'];
+$rating = $_POST['rating'];
 
-print_r($_POST);
+// print_r($_POST);
+
+$sql="
+   INSERT INTO movies 
+    SET Title = '$title',
+     Rating = '$rating',
+     MovieLink= '$id',
+    UserID = (
+    SELECT id
+      FROM users
+     WHERE email = '$email')
+";
+
+$result = mysqli_query($conn, $sql);
+
+$data = mysqli_fetch_all($result, MYSQLI_ASSOC);
+
+print_r($result);
+
+mysqli_close($conn);

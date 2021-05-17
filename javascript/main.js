@@ -27,7 +27,6 @@ const addToFavorites = (param1, param2, param3) => {
 	dataToPass.id = param1;
 	dataToPass.title = param2;
 	dataToPass.rating = param3;
-	console.log(dataToPass);
 
 	$.ajax({
 		type: "POST",
