@@ -153,6 +153,7 @@ const getIndividualMovie = async () => {
   `;
 	document.getElementById("movie").insertAdjacentHTML("afterbegin", uiOutput);
 };
+
 const getIndividualMovieLoggedIn = async () => {
 	let movieId = sessionStorage.getItem("id");
 	let data = await fetch(

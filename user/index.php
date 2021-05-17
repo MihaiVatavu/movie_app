@@ -16,13 +16,16 @@ if (!isset($_SESSION['email'])) {
 $email = mysqli_real_escape_string($conn, $_SESSION['email']);
 // echo $email;
 
-$sqlget = "SELECT * FROM users WHERE email = '$email'";
+$sqlget = "SELECT * FROM movies 
+inner join users
+on movies.UserID = users.id
+WHERE email = '$email'";
 
 $result = mysqli_query($conn, $sqlget);
 
 $data = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
-// print_r($result)
+print_r($result);
 
 mysqli_close($conn);
 
@@ -68,13 +71,33 @@ mysqli_close($conn);
 
     </div>
     <div class="row">
-      <h2>Details</h2>
-      <h4>Bio : <span><?php echo $data[0]['bio'] ?></span></h4>
-      <h4>Country : <span><?php echo $data[0]['country'] ?></span></h4>
-      <h4>City : <span><?php echo $data[0]['city'] ?></span></h4>
-      <h4>Age : <span><?php echo $data[0]['age'] ?></span></h4>
-      <a href="edituserdetails.php" class="btn-large waves-effect waves-light grey darken-4 center">Edit Details<i class="material-icons right">edit</i></a>
+      <div class="col s12 offset-l2 m4">
+        <h2>Details</h2>
+        <h4>Bio : <span><?php echo $data[0]['bio'] ?></span></h4>
+        <h4>Country : <span><?php echo $data[0]['country'] ?></span></h4>
+        <h4>City : <span><?php echo $data[0]['city'] ?></span></h4>
+        <h4>Age : <span><?php echo $data[0]['age'] ?></span></h4>
+        <a href="edituserdetails.php" class="btn-large waves-effect waves-light grey darken-4 center">Edit Details<i class="material-icons right">edit</i></a>
+      </div>
+      <div class="col s12 offset-l2 l4">
+        <h4>Favourite Movies</h4>
+        <ul class="collection">
+          <?php foreach ($data as $movie) : ?>
+            <li class="collection-item avatar">
+              <span class="title"><?php echo $movie['Title'] ?></span>
+              <p> Rating <?php echo $movie['Rating'] ?> </p>
+                  <a href="../template/details.php?<?php echo $movie['Title']?> "class="secondary-content"><i class="material-icons">link</i></a>
+            </li>
+
+
+          <?php endforeach; ?>
+
+        </ul>
+
+      </div>
     </div>
+
+
   </div>
   <?php include('../template/footer.php'); ?>
 </body>
