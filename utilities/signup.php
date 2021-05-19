@@ -53,7 +53,7 @@ if(isset($_POST['submit'])){
       $_SESSION['email'] = $email; 
       header('Location:../user/index.php');
     }else{
-      echo 'query error:'. mysqli_error($conn);
+      $errors['email'] = 'This email has been already registered';
     }
   }
 }

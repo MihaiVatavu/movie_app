@@ -22,6 +22,7 @@ const getMovieId = id => {
 	// console.log(sessionStorage.getItem('id'));
 };
 
+//Function that receives the id,title and rating of the movie as params and pass them to php with ajax
 const addToFavorites = (param1, param2, param3) => {
 	let dataToPass = {};
 	dataToPass.id = param1;
@@ -90,7 +91,7 @@ const searchMovies = async input => {
 	while (existingMoviesUi.firstChild) {
 		existingMoviesUi.firstChild.remove();
 	}
-	console.log(existingMoviesUi);
+	// console.log(existingMoviesUi);
 	let uiOutput = "";
 	movies.forEach(movie => {
 		console.log(movie);

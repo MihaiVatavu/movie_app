@@ -1,5 +1,8 @@
 <?php
 session_start();
+
+print_r($_SESSION);
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -54,7 +57,7 @@ session_start();
   <script>
     <?php if (isset($_SESSION['email'])) {
       echo 'getIndividualMovieLoggedIn()';
-    } else {
+    } else  {
       echo  'getIndividualMovie()';
     }
     ?>
