@@ -55,7 +55,6 @@ const popularMovies = async () => {
 		} else {
 			poster = "https://image.tmdb.org/t/p/w500" + movie.poster_path;
 		}
-		let date = movie.release_date;
 		let overview = movie.overview.slice(0, 150);
 
 		uiOutput = `
@@ -94,7 +93,7 @@ const searchMovies = async input => {
 	// console.log(existingMoviesUi);
 	let uiOutput = "";
 	movies.forEach(movie => {
-		console.log(movie);
+		// console.log(movie);
 		let poster;
 		if (movie.poster_path === null) {
 			poster = "../assets/default_movie_image.png";
@@ -139,7 +138,7 @@ const getIndividualMovie = async () => {
 	} else {
 		poster = "https://image.tmdb.org/t/p/w500" + movie.poster_path;
 	}
-	// console.log(movie)
+	console.log(movie);
 
 	let uiOutput = `
   <div class="col s12 m8 l6 center" id="details_movie">
@@ -162,13 +161,14 @@ const getIndividualMovieLoggedIn = async () => {
 	);
 	let result = await data.json();
 	let movie = result;
+
 	let poster;
 	if (movie.poster_path === null) {
 		poster = "../image/default-movie.png";
 	} else {
 		poster = "https://image.tmdb.org/t/p/w500" + movie.poster_path;
 	}
-	// console.log(movie)
+	console.log(movie);
 
 	let uiOutput = `
   <div class="col s12 m8 l6 center" id="details_movie">
@@ -176,7 +176,7 @@ const getIndividualMovieLoggedIn = async () => {
       <h2 class="center">Rating : ${movie.vote_average}</h2>
       <p class="center">${movie.overview}</p>
       <p class="center">Runtime : ${movie.runtime}/min</p>
-						<button onclick="addToFavorites('${movieId}','${movie.title}','${movie.vote_average}')" class="btn-large waves-effect waves-light grey darken-4 center">Add to Favourites
+						<button onclick="addToFavorites('${movie.homepage}','${movie.title}','${movie.vote_average}')" class="btn-large waves-effect waves-light grey darken-4 center">Add to Favourites
 						<i class="material-icons right">favorite_border</i>
 				</button> 
     </div>
