@@ -22,6 +22,15 @@ const getMovieId = id => {
 	// console.log(sessionStorage.getItem('id'));
 };
 
+const addedToFav = () => {
+	const uiOutput = `
+	<div class="col s12 center" id="details_movie">
+			<h1 class="center">Movie has been added to favourites</h1>
+	</div>
+	`;
+	document.getElementById("movie").insertAdjacentHTML("afterbegin", uiOutput);
+};
+
 //Function that receives the id,title and rating of the movie as params and pass them to php with ajax
 const addToFavorites = (param1, param2, param3) => {
 	let dataToPass = {};
@@ -37,6 +46,7 @@ const addToFavorites = (param1, param2, param3) => {
 			console.log(data);
 		},
 	});
+	addedToFav();
 };
 
 const popularMovies = async () => {

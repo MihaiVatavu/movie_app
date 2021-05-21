@@ -2,13 +2,14 @@
 include('../utilities/conn.php');
 
 session_start();
+
+//Handle movie data passed by JS
 $email = $_SESSION['email'];
 $id = $_POST['id'];
 $title = $_POST['title'];
 $rating = $_POST['rating'];
 
-// print_r($_POST);
-
+//Insert the movie into the database
 $sql="
    INSERT INTO movies 
     SET Title = '$title',
@@ -22,6 +23,5 @@ $sql="
 
 $result = mysqli_query($conn, $sql);
 $data = mysqli_fetch_all($result, MYSQLI_ASSOC);
-
 
 ?>

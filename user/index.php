@@ -3,24 +3,27 @@
 include('../utilities/conn.php');
 
 session_start();
-
+//Check if user is logged in
 if (!isset($_SESSION['email'])) {
   header('location: ../guest/index.php');
-} else {
-  if ($_SESSION['status'] == "admin") {
-    header('location: ../admin/index.php');
-  }
 }
 
-// $email = $_SESSION['email'];
+//Delete feature
+if(isset($_POST['delete'])){
+  $movie_to_delete = mysqli_real_escape_string($conn, $_POST['movie_to_delete']);
+ 
+  $deletequery = "DELETE FROM movies WHERE MovieLink='$movie_to_delete'";
+ 
+  if(mysqli_query($conn, $deletequery)){
+  }else{
+   echo 'Error';
+  }
+ }
+
+
 $email = mysqli_real_escape_string($conn, $_SESSION['email']);
-// echo $email;
 
-$sqlgetmovies = "SELECT * FROM movies 
-inner join users
-on movies.UserID = users.id
-WHERE email = '$email'";
-
+//Get user details
 $sqlgetuser = "SELECT * FROM users
 WHERE email = '$email'";
 
@@ -28,12 +31,16 @@ $resultUser = mysqli_query($conn, $sqlgetuser);
 
 $user = mysqli_fetch_all($resultUser, MYSQLI_ASSOC);
 
+//Get movies
+$sqlgetmovies = "SELECT * FROM movies 
+inner join users
+on movies.UserID = users.id
+WHERE email = '$email'";
+
 $resultMovies = mysqli_query($conn, $sqlgetmovies);
-print_r($resultMovies);
+
 $movies = mysqli_fetch_all($resultMovies, MYSQLI_ASSOC);
 
-// $_SESSION['id']= $data[0]['MovieLink'];
-// echo $_SESSION['id'];
 
 mysqli_close($conn);
 
@@ -99,7 +106,13 @@ mysqli_close($conn);
               <span class="title"><?php echo $movie['Title'] ?></span>
               <p> Rating <?php echo $movie['Rating'] ?> </p>
               <a href="<?php echo $movie['MovieLink'] ?> " class="secondary-content"><i class="material-icons">link</i></a>
+              <form action="index.php" method="POST">
+              <input type="hidden" name="movie_to_delete" value="<?php echo $movie['MovieLink']; ?>">
+              <button type="submit" name="delete" class="btn red brand z-depth-0"><i class="material-icons">delete</i></button>
+              </form>
+
             </li>
+           
           <?php endforeach; ?>
         </ul>
 
